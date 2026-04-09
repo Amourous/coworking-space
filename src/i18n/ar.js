@@ -62,6 +62,17 @@ export default {
     desc: 'وقّد تركيزك بمشروبات ووجبات ووجبات خفيفة مختارة — متوفرة في الموقع.',
     allItems: 'جميع الأصناف',
     orderBtn: 'اطلب من الكاونتر',
+    categories: {
+      Coffee: 'القهوة',
+      Pastries: 'المعجنات',
+      'Cold Drinks': 'المشروبات الباردة',
+      Tea: 'الشاي',
+      Snacks: 'وجبات خفيفة',
+      Salads: 'السلطات',
+      Sandwiches: 'ساندويتشات',
+      Desserts: 'حلويات',
+      Wraps: 'راب (لفائف)'
+    }
   },
 
   // About

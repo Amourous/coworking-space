@@ -62,6 +62,17 @@ export default {
     desc: 'Fuel your focus with curated drinks, meals, and snacks — all available on-site.',
     allItems: 'All Items',
     orderBtn: 'Order at counter',
+    categories: {
+      Coffee: 'Coffee',
+      Pastries: 'Pastries',
+      'Cold Drinks': 'Cold Drinks',
+      Tea: 'Tea',
+      Snacks: 'Snacks',
+      Salads: 'Salads',
+      Sandwiches: 'Sandwiches',
+      Desserts: 'Desserts',
+      Wraps: 'Wraps'
+    }
   },
 
   // About

@@ -57,7 +57,7 @@ export default function Cafeteria() {
                 : 'bg-surface border border-white/5 text-textMuted hover:text-white hover:border-white/20'
             }`}
           >
-            {cat === 'all' ? t('cafeteria.allItems') : C.CAFETERIA_CATEGORIES[cat] || cat}
+            {cat === 'all' ? t('cafeteria.allItems') : t(`cafeteria.categories.${cat}`) !== `cafeteria.categories.${cat}` ? t(`cafeteria.categories.${cat}`) : C.CAFETERIA_CATEGORIES[cat] || cat}
           </button>
         ))}
       </div>
