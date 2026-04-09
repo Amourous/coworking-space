@@ -63,15 +63,15 @@ export default {
     allItems: 'All Items',
     orderBtn: 'Order at counter',
     categories: {
-      Coffee: 'Coffee',
-      Pastries: 'Pastries',
-      'Cold Drinks': 'Cold Drinks',
-      Tea: 'Tea',
-      Snacks: 'Snacks',
-      Salads: 'Salads',
-      Sandwiches: 'Sandwiches',
-      Desserts: 'Desserts',
-      Wraps: 'Wraps'
+      coffee: 'Coffee',
+      pastries: 'Pastries',
+      cold_drinks: 'Cold Drinks',
+      tea: 'Tea',
+      snacks: 'Snacks',
+      salads: 'Salads',
+      sandwiches: 'Sandwiches',
+      desserts: 'Desserts',
+      wraps: 'Wraps'
     }
   },
 

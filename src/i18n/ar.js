@@ -63,15 +63,15 @@ export default {
     allItems: 'جميع الأصناف',
     orderBtn: 'اطلب من الكاونتر',
     categories: {
-      Coffee: 'القهوة',
-      Pastries: 'المعجنات',
-      'Cold Drinks': 'المشروبات الباردة',
-      Tea: 'الشاي',
-      Snacks: 'وجبات خفيفة',
-      Salads: 'السلطات',
-      Sandwiches: 'ساندويتشات',
-      Desserts: 'حلويات',
-      Wraps: 'راب (لفائف)'
+      coffee: 'القهوة',
+      pastries: 'المعجنات',
+      cold_drinks: 'المشروبات الباردة',
+      tea: 'الشاي',
+      snacks: 'وجبات خفيفة',
+      salads: 'السلطات',
+      sandwiches: 'ساندويتشات',
+      desserts: 'حلويات',
+      wraps: 'راب (لفائف)'
     }
   },
 
