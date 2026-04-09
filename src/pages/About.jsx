@@ -42,13 +42,13 @@ export default function About() {
             </h3>
             <div className="space-y-4 text-sm text-textMuted">
               <p>
-                123 Innovation Drive<br />
-                Tech District, Building A<br />
-                Austin, TX 78701
+                42 Fouad Street<br />
+                Raml Station, Downtown<br />
+                Alexandria, Egypt
               </p>
               <div className="flex items-center gap-3 pt-2">
                 <Phone className="w-4 h-4 text-textMain" />
-                <span className="text-white">+1 (555) 123-4567</span>
+                <span className="text-white">+20 3 486 7890</span>
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-textMain" />

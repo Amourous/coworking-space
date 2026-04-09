@@ -62,9 +62,9 @@ export default function Landing() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap justify-center gap-8 md:gap-16 items-center text-textMuted font-medium text-sm">
             <span>TRUSTED BY STUDENTS FROM</span>
-            <span className="text-white text-lg font-bold font-serif opacity-70">Stanford</span>
-            <span className="text-white text-lg font-bold font-mono opacity-70">MIT</span>
-            <span className="text-white text-lg font-bold opacity-70">Y Combinator Startups</span>
+            <span className="text-white text-lg font-bold font-serif opacity-70">Alexandria University</span>
+            <span className="text-white text-lg font-bold font-mono opacity-70">Arab Academy</span>
+            <span className="text-white text-lg font-bold opacity-70">E-JUST</span>
           </div>
         </div>
       </section>
@@ -119,9 +119,9 @@ export default function Landing() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Hardcoded teaser spaces for preview */}
             {[
-              { id: 1, name: 'Flex Desk', type: 'Hot Desk', price: 3, img: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80' },
-              { id: 4, name: 'Focus Pod 1', type: 'Quiet Booth', price: 4, img: 'https://images.unsplash.com/photo-1593062096033-9a26b09da705?auto=format&fit=crop&w=800&q=80' },
-              { id: 5, name: 'The Huddle', type: 'Meeting Room', price: 15, img: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80' }
+              { id: 1, name: 'Flex Desk', type: 'Hot Desk', price: 50, img: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80' },
+              { id: 4, name: 'Focus Pod 1', type: 'Quiet Booth', price: 75, img: 'https://images.unsplash.com/photo-1593062096033-9a26b09da705?auto=format&fit=crop&w=800&q=80' },
+              { id: 5, name: 'The Huddle', type: 'Meeting Room', price: 200, img: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80' }
             ].map((space, i) => (
               <motion.div 
                 key={space.id}
@@ -141,7 +141,7 @@ export default function Landing() {
                   <div className="flex justify-between items-start mb-2">
                     <h3 className="text-xl font-semibold group-hover:text-primary transition-colors">{space.name}</h3>
                     <div className="text-right">
-                      <span className="text-lg font-bold text-accent">${space.price}</span>
+                      <span className="text-lg font-bold text-accent">{space.price} EGP</span>
                       <span className="text-xs text-textMuted">/hr</span>
                     </div>
                   </div>

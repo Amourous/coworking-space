@@ -39,10 +39,10 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold mb-4 text-white">Visit Us</h3>
             <ul className="space-y-2 text-sm text-textMuted">
-              <li>123 Innovation Drive</li>
-              <li>Tech District, TX 78701</li>
+              <li>42 Fouad Street</li>
+              <li>Raml Station, Alexandria, Egypt</li>
               <li>hello@worknest.io</li>
-              <li>+1 (555) 123-4567</li>
+              <li>+20 3 486 7890</li>
             </ul>
           </div>
         </div>
