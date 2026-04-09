@@ -2,8 +2,10 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Users, Wifi, Wind, MapPin } from 'lucide-react';
 import { C, formatCurrency } from '../../utils/constants';
+import { useLang } from '../../context/LanguageContext';
 
 export default function SpaceCard({ space, index }) {
+  const { lang, t } = useLang();
   const typeLabel = C.SPACE_TYPES[space.type] || space.type;
   
   return (
@@ -31,15 +33,17 @@ export default function SpaceCard({ space, index }) {
       
       <div className="p-5 flex-grow flex flex-col">
         <div className="flex justify-between items-start mb-2">
-          <h3 className="text-xl font-semibold group-hover:text-primary transition-colors">{space.name}</h3>
-          <div className="text-right whitespace-nowrap ml-4">
-            <span className="text-lg font-bold text-accent">{formatCurrency(space.price_hourly || space.price_daily || 0)}</span>
-            <span className="text-xs text-textMuted">/{space.price_hourly ? 'hr' : 'day'}</span>
+          <h3 className="text-xl font-semibold group-hover:text-primary transition-colors">
+            {lang === 'ar' && space.name_ar ? space.name_ar : space.name}
+          </h3>
+          <div className="text-right whitespace-nowrap ml-4 rtl:ml-0 rtl:mr-4">
+            <span className="text-lg font-bold text-accent">{formatCurrency(space.price_hourly || space.price_daily || 0, lang)}</span>
+            <span className="text-xs text-textMuted rtl:mr-1">{space.price_hourly ? t('booking.perHr') : t('booking.perDay')}</span>
           </div>
         </div>
         
         <p className="text-sm text-textMuted flex-grow mb-4 line-clamp-2">
-          {space.description}
+          {lang === 'ar' && space.description_ar ? space.description_ar : space.description}
         </p>
 
         <div className="flex flex-wrap gap-2 mb-4">
@@ -56,7 +60,7 @@ export default function SpaceCard({ space, index }) {
         </div>
         
         <Link to={`/spaces/${space.id}`} className="w-full block text-center btn-secondary py-2 text-sm mt-auto">
-          View Details
+          {t('spaces.viewDetails')}
         </Link>
       </div>
     </motion.div>

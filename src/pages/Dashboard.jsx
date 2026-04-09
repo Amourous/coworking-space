@@ -5,9 +5,11 @@ import { format } from 'date-fns';
 import { Loader2, Calendar, MapPin, Clock, XCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { formatCurrency, C } from '../utils/constants';
+import { useLang } from '../context/LanguageContext';
 
 export default function Dashboard() {
   const { user, profile } = useAuth();
+  const { lang, t } = useLang();
   const [reservations, setReservations] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -88,13 +90,15 @@ export default function Dashboard() {
               <div key={res.id} className="glass-card p-6 rounded-2xl border-l-4 border-l-primary flex flex-col h-full">
                 <div className="flex justify-between items-start mb-4">
                   <div>
-                    <h3 className="text-xl font-semibold mb-1">{res.space.name}</h3>
+                    <h3 className="text-xl font-semibold mb-1">
+                      {lang === 'ar' && res.space.name_ar ? res.space.name_ar : res.space.name}
+                    </h3>
                     <span className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-primary/20 text-primary">
                       {res.status.toUpperCase()}
                     </span>
                   </div>
                   <div className="text-right">
-                    <div className="font-bold text-lg">{formatCurrency(res.total_price)}</div>
+                    <div className="font-bold text-lg">{formatCurrency(res.total_price, lang)}</div>
                     <div className="text-xs text-textMuted">Unpaid</div>
                   </div>
                 </div>
@@ -147,14 +151,16 @@ export default function Dashboard() {
               <tbody>
                 {pastReservations.map(res => (
                   <tr key={res.id} className="border-b border-white/5 hover:bg-white/5 text-textMain">
-                    <td className="px-6 py-4 font-medium">{res.space.name}</td>
+                    <td className="px-6 py-4 font-medium">
+                      {lang === 'ar' && res.space.name_ar ? res.space.name_ar : res.space.name}
+                    </td>
                     <td className="px-6 py-4">{format(new Date(res.booking_date), 'MMM d, yyyy')}</td>
                     <td className="px-6 py-4">
                       <span className={`px-2 py-1 rounded text-xs ${res.status === 'cancelled' ? 'bg-danger/20 text-danger' : 'bg-success/20 text-success'}`}>
                         {res.status}
                       </span>
                     </td>
-                    <td className="px-6 py-4 text-right">{formatCurrency(res.total_price)}</td>
+                    <td className="px-6 py-4 text-right">{formatCurrency(res.total_price, lang)}</td>
                   </tr>
                 ))}
               </tbody>

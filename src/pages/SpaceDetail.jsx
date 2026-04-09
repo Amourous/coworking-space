@@ -2,12 +2,12 @@ import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import BookingForm from '../components/booking/BookingForm';
-import { Users, ArrowLeft, Loader2, Info, MapPin } from 'lucide-react';
+import { Users, ArrowLeft, ArrowRight, Loader2, Info, MapPin } from 'lucide-react';
 import { C, formatCurrency } from '../utils/constants';
 import { useLang } from '../context/LanguageContext';
 
 export default function SpaceDetail() {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const { id } = useParams();
   const [space, setSpace] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -73,8 +73,12 @@ export default function SpaceDetail() {
           </div>
 
           <div className="mb-10">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">{space.name}</h1>
-            <p className="text-lg text-textMuted leading-relaxed">{space.description}</p>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">
+              {lang === 'ar' && space.name_ar ? space.name_ar : space.name}
+            </h1>
+            <p className="text-lg text-textMuted leading-relaxed">
+              {lang === 'ar' && space.description_ar ? space.description_ar : space.description}
+            </p>
           </div>
 
           {space.amenities && space.amenities.length > 0 && (

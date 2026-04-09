@@ -86,10 +86,14 @@ export default function Cafeteria() {
             
             <div className="p-5 flex flex-col flex-grow">
               <div className="flex justify-between items-start mb-2">
-                <h3 className="text-lg font-bold text-white">{item.name}</h3>
+                <h3 className="text-lg font-bold text-white">
+                  {lang === 'ar' && item.name_ar ? item.name_ar : item.name}
+                </h3>
                 <span className="font-mono font-bold text-accent">{formatCurrency(item.price, lang)}</span>
               </div>
-              <p className="text-sm text-textMuted line-clamp-2 mb-4 flex-grow">{item.description}</p>
+              <p className="text-sm text-textMuted line-clamp-2 mb-4 flex-grow">
+                {lang === 'ar' && item.description_ar ? item.description_ar : item.description}
+              </p>
               
               <div className="pt-4 border-t border-white/5">
                 <button 
