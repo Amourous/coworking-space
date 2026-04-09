@@ -4,8 +4,10 @@ import { supabase } from '../lib/supabase';
 import BookingForm from '../components/booking/BookingForm';
 import { Users, ArrowLeft, Loader2, Info, MapPin } from 'lucide-react';
 import { C, formatCurrency } from '../utils/constants';
+import { useLang } from '../context/LanguageContext';
 
 export default function SpaceDetail() {
+  const { t } = useLang();
   const { id } = useParams();
   const [space, setSpace] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -44,7 +46,9 @@ export default function SpaceDetail() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
       <Link to="/spaces" className="inline-flex items-center text-textMuted hover:text-white mb-6 transition-colors">
-        <ArrowLeft className="w-4 h-4 mr-2" /> Back to Spaces
+        <ArrowLeft className="w-4 h-4 mr-2 rtl:hidden" /> 
+        <ArrowRight className="w-4 h-4 ml-2 hidden rtl:block" /> 
+        {t('spaces.backToSpaces')}
       </Link>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
@@ -62,7 +66,7 @@ export default function SpaceDetail() {
               </span>
               {space.capacity > 1 && (
                 <span className="bg-primary/90 backdrop-blur px-3 py-1.5 rounded-full text-sm font-medium shadow-lg flex items-center gap-1.5">
-                  <Users className="w-4 h-4" /> Capacity: {space.capacity}
+                  <Users className="w-4 h-4" /> {t('spaces.capacity')}: {space.capacity}
                 </span>
               )}
             </div>
@@ -76,7 +80,7 @@ export default function SpaceDetail() {
           {space.amenities && space.amenities.length > 0 && (
             <div className="mb-10">
               <h3 className="text-xl font-semibold mb-6 flex items-center gap-2">
-                <Info className="w-5 h-5 text-primary" /> Amenities Included
+                <Info className="w-5 h-5 text-primary" /> {t('spaces.amenities')}
               </h3>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                 {space.amenities.map((amenity, i) => (

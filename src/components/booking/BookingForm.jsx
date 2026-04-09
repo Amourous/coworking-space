@@ -5,8 +5,10 @@ import { useAuth } from '../../context/AuthContext';
 import { Calendar, Clock, Users, ArrowRight, Loader2, AlertCircle, CheckCircle2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { formatCurrency } from '../../utils/constants';
+import { useLang } from '../../context/LanguageContext';
 
 export default function BookingForm({ space }) {
+  const { t, lang } = useLang();
   const { user } = useAuth();
   const navigate = useNavigate();
   const [date, setDate] = useState(format(addDays(new Date(), 1), 'yyyy-MM-dd'));
@@ -88,15 +90,14 @@ export default function BookingForm({ space }) {
     <div className="glass-card p-6 md:p-8 rounded-2xl relative overflow-hidden">
       {!user && (
         <div className="absolute inset-0 bg-background/80 backdrop-blur-sm z-10 flex flex-col items-center justify-center p-6 text-center rounded-2xl">
-          <h3 className="text-xl font-bold mb-2">Sign in to book</h3>
-          <p className="text-textMuted mb-4">You need an account to reserve spaces.</p>
-          <button onClick={() => navigate('/login')} className="btn-primary">
-            Sign In
+          <h3 className="text-xl font-bold mb-2">{t('booking.loginRequired')}</h3>
+          <button onClick={() => navigate('/login')} className="btn-primary mt-4">
+            {t('nav.login')}
           </button>
         </div>
       )}
 
-      <h3 className="text-2xl font-bold mb-6">Reserve Space</h3>
+      <h3 className="text-2xl font-bold mb-6">{t('booking.title')}</h3>
 
       {error && (
         <div className="bg-danger/10 border border-danger/30 text-danger text-sm rounded-lg p-3 mb-6 flex items-start gap-2">
@@ -107,7 +108,7 @@ export default function BookingForm({ space }) {
 
       <form onSubmit={handleBooking} className="space-y-5">
         <div>
-          <label className="block text-sm font-medium text-textMuted mb-1.5">Date</label>
+          <label className="block text-sm font-medium text-textMuted mb-1.5">{t('booking.date')}</label>
           <div className="relative">
             <Calendar className="w-5 h-5 text-textMuted absolute left-3 top-1/2 -translate-y-1/2" />
             <input
@@ -124,13 +125,13 @@ export default function BookingForm({ space }) {
         {!isDaily && (
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-textMuted mb-1.5">Start Time</label>
+              <label className="block text-sm font-medium text-textMuted mb-1.5">{t('booking.startTime')}</label>
               <div className="relative">
-                <Clock className="w-5 h-5 text-textMuted absolute left-3 top-1/2 -translate-y-1/2" />
+                <Clock className="w-5 h-5 text-textMuted absolute left-3 rtl:left-auto rtl:right-3 top-1/2 -translate-y-1/2" />
                 <select 
                   value={startTime} 
                   onChange={(e) => setStartTime(e.target.value)}
-                  className="input-field pl-10 appearance-none"
+                  className="input-field pl-10 rtl:pl-3 rtl:pr-10 appearance-none"
                 >
                   {Array.from({length: 12}).map((_, i) => (
                     <option key={i} value={`${(i + 8).toString().padStart(2, '0')}:00`}>
@@ -141,7 +142,7 @@ export default function BookingForm({ space }) {
               </div>
             </div>
             <div>
-              <label className="block text-sm font-medium text-textMuted mb-1.5">Duration</label>
+              <label className="block text-sm font-medium text-textMuted mb-1.5">{t('booking.duration')}</label>
               <select 
                 value={duration} 
                 onChange={(e) => setDuration(e.target.value)}
@@ -159,7 +160,7 @@ export default function BookingForm({ space }) {
 
         {space.capacity > 1 && (
           <div>
-            <label className="block text-sm font-medium text-textMuted mb-1.5">Guests</label>
+            <label className="block text-sm font-medium text-textMuted mb-1.5">{t('booking.guests')}</label>
             <div className="relative">
               <Users className="w-5 h-5 text-textMuted absolute left-3 top-1/2 -translate-y-1/2" />
               <input
@@ -177,14 +178,14 @@ export default function BookingForm({ space }) {
 
         <div className="border-t border-white/10 pt-5 mt-2">
           <div className="flex justify-between items-center mb-2">
-            <span className="text-textMuted text-sm">Rate</span>
+            <span className="text-textMuted text-sm">{t('booking.rate')}</span>
             <span className="font-medium text-sm">
-              {isDaily ? `${formatCurrency(space.price_daily)}/day` : `${formatCurrency(space.price_hourly)}/hr`}
+              {isDaily ? `${formatCurrency(space.price_daily, lang)}${t('booking.perDay')}` : `${formatCurrency(space.price_hourly, lang)}${t('booking.perHr')}`}
             </span>
           </div>
           <div className="flex justify-between items-center">
-            <span className="text-lg font-bold">Total</span>
-            <span className="text-2xl font-bold text-primary">{formatCurrency(totalPrice)}</span>
+            <span className="text-lg font-bold">{t('booking.total')}</span>
+            <span className="text-2xl font-bold text-primary">{formatCurrency(totalPrice, lang)}</span>
           </div>
         </div>
 
@@ -196,7 +197,7 @@ export default function BookingForm({ space }) {
           {loading ? (
             <Loader2 className="w-5 h-5 animate-spin" />
           ) : (
-            <>Confirm Booking <ArrowRight className="w-4 h-4" /></>
+            <>{t('booking.confirm')} <ArrowRight className="w-4 h-4 rtl:-scale-x-100" /></>
           )}
         </button>
       </form>

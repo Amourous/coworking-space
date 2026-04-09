@@ -1,6 +1,6 @@
 export async function onRequestPost({ request, env }) {
   try {
-    const { messages } = await request.json();
+    const { messages, lang = 'en' } = await request.json();
 
     if (!messages || !Array.isArray(messages)) {
       return new Response(JSON.stringify({ error: "Invalid messages format" }), { status: 400 });
@@ -8,8 +8,7 @@ export async function onRequestPost({ request, env }) {
 
     // System prompt tailored for WorkNest
     const systemPrompt = {
-      role: 'system',
-      content: `You are the WorkNest AI Assistant, a helpful and friendly concierge for a premium coworking space in Alexandria, Egypt.
+    const systemPromptEn = `You are the WorkNest AI Assistant, a helpful and friendly concierge for a premium coworking space in Alexandria, Egypt.
 Your goal is to help users navigate the coworking space, explain features, and assist with reservations.
 
 Base Knowledge:
@@ -34,7 +33,24 @@ Guidelines:
 - Do not make up information outside the scope of WorkNest.
 - If asked to book something, explain that you can't book it directly, but they should click on the "Spaces" tab to browse and book instantly. Suggest a space based on their needs.
 - If asked about prices, provide the hourly/daily rates in EGP.
-`
+`;
+
+    const systemPromptAr = `أنت مساعد وورك نست الذكي، مسؤول ودود للمساعدة في مساحة عمل مشتركة متميزة في الإسكندرية، مصر.
+هدفك هو مساعدة المستخدمين، شرح الميزات، والمساعدة في الحجوزات. يجب أن ترد دائماً باللغة العربية.
+
+المعرفة الأساسية:
+- الاسم: وورك نست
+- الموقع: ٤٢ شارع فؤاد، محطة الرمل، الإسكندرية
+- الهاتف: +٢٠ ٣ ٤٨٦ ٧٨٩٠
+- أوقات العمل: الأحد-الخميس ٨ص-١٠م، الجمعة ١٠ص-٦م، السبت ٩ص-٨م
+- المساحات: مكاتب مشتركة (٥٠ جنيه/ساعة)، مكاتب مخصصة (١٠٠ جنيه/ساعة)، كبائن هادئة (٧٥ جنيه/ساعة)، قاعات اجتماعات (٢٠٠-٤٠٠ جنيه/ساعة).
+- الكافيتريا: متوفرة (قهوة، سندويشات).
+- لإتمام الحجز، وجه المستخدم إلى قسم "المساحات" في الموقع.
+`;
+
+    const systemPrompt = {
+      role: 'system',
+      content: lang === 'ar' ? systemPromptAr : systemPromptEn
     };
 
     // Prepare messages for Cloudflare Workers AI
@@ -56,7 +72,10 @@ Guidelines:
 
     // Fallback if env.AI is not bound (Rule-based fallback)
     const userMsg = messages[messages.length - 1].content.toLowerCase();
-    let botResponse = "I'm the WorkNest assistant! I can help you find a space, answer questions about our amenities, or provide cafeteria menus.";
+    
+    let botResponse = lang === 'ar' 
+      ? 'أنا مساعد وورك نست الذكي! يمكنني مساعدتك في العثور على مساحة أو الإجابة على أسئلتك.'
+      : "I'm the WorkNest assistant! I can help you find a space or answer questions.";
     
     if (userMsg.includes('book') || userMsg.includes('reserve')) {
       botResponse = "To book a space, please visit the 'Spaces' tab. I highly recommend our Focus Pods for quiet study, or The Huddle to work with a team!";

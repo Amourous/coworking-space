@@ -3,11 +3,13 @@ import { supabase } from '../lib/supabase';
 import { Loader2, Coffee } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { C, formatCurrency } from '../utils/constants';
+import { useLang } from '../context/LanguageContext';
 
 export default function Cafeteria() {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState('all');
+  const { t, lang } = useLang();
 
   useEffect(() => {
     async function fetchMenu() {
@@ -38,10 +40,9 @@ export default function Cafeteria() {
         <div className="inline-flex items-center justify-center bg-primary/20 p-4 rounded-3xl mb-6">
           <Coffee className="w-8 h-8 text-primary" />
         </div>
-        <h1 className="text-4xl md:text-5xl font-bold mb-4">The WorkNest Cafe</h1>
+        <h1 className="text-4xl md:text-5xl font-bold mb-4">{t('cafeteria.title')}</h1>
         <p className="text-lg text-textMuted">
-          Fuel your productivity with our artisan coffee and fresh, student-friendly meals. 
-          Order at the counter or directly from your desk.
+          {t('cafeteria.desc')}
         </p>
       </div>
 
@@ -56,7 +57,7 @@ export default function Cafeteria() {
                 : 'bg-surface border border-white/5 text-textMuted hover:text-white hover:border-white/20'
             }`}
           >
-            {cat === 'all' ? 'All Items' : C.CAFETERIA_CATEGORIES[cat] || cat}
+            {cat === 'all' ? t('cafeteria.allItems') : C.CAFETERIA_CATEGORIES[cat] || cat}
           </button>
         ))}
       </div>
@@ -86,7 +87,7 @@ export default function Cafeteria() {
             <div className="p-5 flex flex-col flex-grow">
               <div className="flex justify-between items-start mb-2">
                 <h3 className="text-lg font-bold text-white">{item.name}</h3>
-                <span className="font-mono font-bold text-accent">{formatCurrency(item.price)}</span>
+                <span className="font-mono font-bold text-accent">{formatCurrency(item.price, lang)}</span>
               </div>
               <p className="text-sm text-textMuted line-clamp-2 mb-4 flex-grow">{item.description}</p>
               
@@ -95,7 +96,7 @@ export default function Cafeteria() {
                   disabled={!item.is_available}
                   className="w-full text-sm font-medium py-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-primary"
                 >
-                  Order at counter
+                  {t('cafeteria.orderBtn')}
                 </button>
               </div>
             </div>

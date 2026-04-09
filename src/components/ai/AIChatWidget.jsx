@@ -1,11 +1,13 @@
 import { MessageSquare, Send, X, Bot, User, Loader2 } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLang } from '../../context/LanguageContext';
 
 export default function AIChatWidget() {
+  const { lang, t } = useLang();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { role: 'assistant', content: "Hi! I'm the WorkNest AI assistant. I can help you find the perfect space or show you the cafeteria menu. How can I help?" }
+    { role: 'assistant', content: t('ai.greeting') }
   ]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
@@ -35,7 +37,7 @@ export default function AIChatWidget() {
       const response = await fetch('/api/ai-chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: newMessages })
+        body: JSON.stringify({ messages: newMessages, lang })
       });
 
       if (!response.ok) throw new Error('Network response was not ok');
@@ -64,9 +66,9 @@ export default function AIChatWidget() {
           >
             <div className="bg-primary p-4 flex justify-between items-center text-white shrink-0">
               <div className="flex items-center gap-2">
-                <Bot className="w-5 h-5" />
+                <Bot className="w-5 h-5 rtl:-scale-x-100" />
                 <div>
-                  <h3 className="font-semibold leading-tight">WorkNest Assistant</h3>
+                  <h3 className="font-semibold leading-tight">{t('ai.title')}</h3>
                   <p className="text-[10px] text-white/80">Powered by Cloudflare AI</p>
                 </div>
               </div>
@@ -104,15 +106,15 @@ export default function AIChatWidget() {
                 type="text" 
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                placeholder="Ask about spaces..." 
-                className="input-field text-sm py-2 flex-grow"
+                placeholder={t('ai.placeholder')}
+                className="input-field text-sm py-2 flex-grow rtl:text-right"
               />
               <button 
                 type="submit" 
                 disabled={!input.trim() || loading}
                 className="bg-primary hover:bg-primaryHover text-white p-2 rounded-lg transition-colors disabled:opacity-50"
               >
-                <Send className="w-4 h-4" />
+                <Send className="w-4 h-4 rtl:-scale-x-100" />
               </button>
             </form>
           </motion.div>

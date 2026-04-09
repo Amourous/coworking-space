@@ -1,14 +1,8 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Wifi, Coffee, Users, Shield, MapPin, Star } from 'lucide-react';
-import { C } from '../utils/constants';
-
-const features = [
-  { icon: <Wifi className="w-6 h-6 text-primary" />, title: 'Gigabit Internet', desc: 'Blazing fast, reliable Wi-Fi throughout the entire space.' },
-  { icon: <Coffee className="w-6 h-6 text-primary" />, title: 'Premium Cafeteria', desc: 'Artisan coffee, healthy snacks, and fulfilling meals on-site.' },
-  { icon: <Users className="w-6 h-6 text-primary" />, title: 'Vibrant Community', desc: 'Network with ambitious founders, students, and freelancers.' },
-  { icon: <Shield className="w-6 h-6 text-primary" />, title: 'Secure Access', desc: '24/7 keyless entry for dedicated desk members and above.' },
-];
+import { C, formatCurrency } from '../utils/constants';
+import { useLang } from '../context/LanguageContext';
 
 const testimonials = [
   { name: 'Sarah Jenkins', role: 'Freelance Designer', text: 'WorkNest changed the way I work. The atmosphere is vibrant, internet is blazing fast, and I love the focus pods when I have client meetings.', rating: 5 },
@@ -17,6 +11,15 @@ const testimonials = [
 ];
 
 export default function Landing() {
+  const { t, lang } = useLang();
+
+  const features = [
+    { icon: <Wifi className="w-6 h-6 text-primary" />, title: t('features.wifi'), desc: t('features.wifiDesc') },
+    { icon: <Coffee className="w-6 h-6 text-primary" />, title: t('features.cafe'), desc: t('features.cafeDesc') },
+    { icon: <Users className="w-6 h-6 text-primary" />, title: t('features.community'), desc: t('features.communityDesc') },
+    { icon: <Shield className="w-6 h-6 text-primary" />, title: t('features.secure'), desc: t('features.secureDesc') },
+  ];
+
   return (
     <div className="flex flex-col w-full">
       {/* Hero Section */}
@@ -33,23 +36,22 @@ export default function Landing() {
               transition={{ duration: 0.5 }}
             >
               <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-white mb-6 leading-tight">
-                Your workspace, <br className="hidden md:block" />
+                {t('landing.heroTitle1')} <br className="hidden md:block" />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
-                  your way.
+                  {t('landing.heroTitle2')}
                 </span>
               </h1>
               <p className="text-lg md:text-xl text-textMuted mb-10 max-w-2xl leading-relaxed">
-                Premium coworking spaces for modern professionals and students. 
-                Whether you need a quiet booth for deep work or a boardroom for your next big pitch, WorkNest has you covered.
+                {t('landing.heroDesc')}
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link to="/spaces" className="btn-primary text-center flex items-center justify-center gap-2 group text-lg py-3 px-8">
-                  Find a Space
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  {t('landing.findSpace')}
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 rtl:-scale-x-100 transition-transform" />
                 </Link>
                 <Link to="/about" className="btn-secondary text-center text-lg py-3 px-8">
-                  Take a Tour
+                  {t('landing.takeTour')}
                 </Link>
               </div>
             </motion.div>
@@ -76,10 +78,10 @@ export default function Landing() {
             initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
             className="text-3xl md:text-4xl font-bold mb-4"
           >
-            Everything you need to do your best work
+            {t('landing.featuresTitle')}
           </motion.h2>
           <p className="text-textMuted max-w-2xl mx-auto">
-            We've designed WorkNest to bridge the gap between a casual coffee shop and a sterile corporate office.
+            {t('landing.featuresDesc')}
           </p>
         </div>
 
@@ -108,11 +110,11 @@ export default function Landing() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-end mb-12">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Popular Spaces</h2>
-              <p className="text-textMuted">Explore our flexible options designed for the way you work.</p>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('landing.popularSpaces')}</h2>
+              <p className="text-textMuted">{t('landing.popularDesc')}</p>
             </div>
             <Link to="/spaces" className="hidden md:flex text-primary hover:text-primaryHover items-center gap-1 font-medium transition-colors">
-              View all spaces <ArrowRight className="w-4 h-4" />
+              {t('landing.viewAll')} <ArrowRight className="w-4 h-4 rtl:-scale-x-100" />
             </Link>
           </div>
 
@@ -141,12 +143,12 @@ export default function Landing() {
                   <div className="flex justify-between items-start mb-2">
                     <h3 className="text-xl font-semibold group-hover:text-primary transition-colors">{space.name}</h3>
                     <div className="text-right">
-                      <span className="text-lg font-bold text-accent">{space.price} EGP</span>
-                      <span className="text-xs text-textMuted">/hr</span>
+                      <span className="text-lg font-bold text-accent">{formatCurrency(space.price, lang)}</span>
+                      <span className="text-xs text-textMuted rtl:mr-1">{t('landing.perHour')}</span>
                     </div>
                   </div>
                   <Link to={`/spaces/${space.id}`} className="mt-4 w-full block text-center btn-secondary py-2 text-sm">
-                    View Details
+                    {t('landing.viewDetails')}
                   </Link>
                 </div>
               </motion.div>
@@ -154,7 +156,7 @@ export default function Landing() {
           </div>
           
           <Link to="/spaces" className="md:hidden mt-8 w-full btn-secondary text-center block">
-            View all spaces
+            {t('landing.viewAll')}
           </Link>
         </div>
       </section>
@@ -191,10 +193,10 @@ export default function Landing() {
       <section className="py-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20" />
         <div className="max-w-4xl mx-auto px-4 relative z-10 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">Ready to upgrade your workspace?</h2>
-          <p className="text-xl text-textMuted mb-10">Join WorkNest today and get 10% off your first booking.</p>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">{t('landing.ctaTitle')}</h2>
+          <p className="text-xl text-textMuted mb-10">{t('landing.ctaDesc')}</p>
           <Link to="/register" className="btn-primary text-lg py-4 px-10 shadow-xl shadow-primary/40 hover:scale-105 transition-transform inline-block">
-            Create Free Account
+            {t('landing.ctaButton')}
           </Link>
         </div>
       </section>

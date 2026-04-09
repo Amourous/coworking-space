@@ -27,8 +27,8 @@ export const C = {
   }
 };
 
-export const formatCurrency = (amount) => {
-  return new Intl.NumberFormat('ar-EG', {
+export const formatCurrency = (amount, lang = 'en') => {
+  return new Intl.NumberFormat(lang === 'ar' ? 'ar-EG' : 'en-EG', {
     style: 'currency',
     currency: 'EGP',
     maximumFractionDigits: 0,
