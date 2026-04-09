@@ -14,17 +14,17 @@ INSERT INTO public.spaces (name, type, description, image_url, capacity, price_h
 
 -- Cafeteria Items
 INSERT INTO public.cafeteria_items (name, description, category, price, image_url) VALUES
-('Espresso', 'A rich and intense shot of pure coffee.', 'coffee', 2.20, 'https://images.unsplash.com/photo-1514432324607-a09d9b4aef11?auto=format&fit=crop&w=400&q=80'),
+('Espresso', 'A rich and intense shot of pure coffee.', 'coffee', 2.20, 'https://images.unsplash.com/photo-1510591509098-f4fdc6d0fd24?auto=format&fit=crop&w=400&q=80'),
 ('Cappuccino', 'Classic Italian coffee with perfectly frothed milk.', 'coffee', 3.50, 'https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=400&q=80'),
-('Iced Latte', 'Chilled espresso and milk over ice for hot study days.', 'coffee', 4.20, 'https://images.unsplash.com/photo-1461023058943-07cb1ce91124?auto=format&fit=crop&w=400&q=80'),
+('Iced Latte', 'Chilled espresso and milk over ice for hot study days.', 'coffee', 4.20, 'https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=400&q=80'),
 ('Green Tea', 'Refreshing and loaded with antioxidants.', 'tea', 2.50, 'https://images.unsplash.com/photo-1627435601361-ec25f5b1d0e5?auto=format&fit=crop&w=400&q=80'),
-('Fresh Orange Juice', 'Squeezed to order.', 'cold_drinks', 3.90, 'https://images.unsplash.com/photo-1600271886742-f049cd451b66?auto=format&fit=crop&w=400&q=80'),
-('Sparkling Water', 'Chilled sparkling carbonated water.', 'cold_drinks', 2.00, 'https://images.unsplash.com/photo-1558223049-34dc3884ffb2?auto=format&fit=crop&w=400&q=80'),
+('Fresh Orange Juice', 'Squeezed to order.', 'cold_drinks', 3.90, 'https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&w=400&q=80'),
+('Sparkling Water', 'Chilled sparkling carbonated water.', 'cold_drinks', 2.00, 'https://images.unsplash.com/photo-1621263764928-df1444c5e859?auto=format&fit=crop&w=400&q=80'),
 ('Turkey Sandwich', 'Sliced turkey breast, Swiss cheese, and fresh greens on whole wheat artisan bread.', 'sandwiches', 5.90, 'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=400&q=80'),
-('Veggie Wrap', 'Grilled peppers, hummus, and spinach wrapped in a whole grain tortilla.', 'wraps', 5.50, 'https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=400&q=80'),
+('Veggie Wrap', 'Grilled peppers, hummus, and spinach wrapped in a whole grain tortilla.', 'wraps', 5.50, 'https://images.unsplash.com/photo-1528736235302-52922df5c122?auto=format&fit=crop&w=400&q=80'),
 ('Quinoa Salad', 'Nutritious mix of quinoa, cherry tomatoes, cucumbers, and lemon dressing.', 'salads', 6.50, 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=400&q=80'),
-('Chocolate Croissant', 'Flaky, buttery pastry filled with rich dark chocolate.', 'pastries', 2.80, 'https://images.unsplash.com/photo-1608198093002-ad4e005db368?auto=format&fit=crop&w=400&q=80'),
-('Mixed Nuts', 'A healthy trail mix of almonds, cashews, and walnuts.', 'snacks', 3.50, 'https://images.unsplash.com/photo-1515543904379-3d757afe72e6?auto=format&fit=crop&w=400&q=80'),
+('Chocolate Croissant', 'Flaky, buttery pastry filled with rich dark chocolate.', 'pastries', 2.80, 'https://images.unsplash.com/photo-1549903072-7e6e0d234271?auto=format&fit=crop&w=400&q=80'),
+('Mixed Nuts', 'A healthy trail mix of almonds, cashews, and walnuts.', 'snacks', 3.50, 'https://images.unsplash.com/photo-1536591375315-1a850ca438b9?auto=format&fit=crop&w=400&q=80'),
 ('Vegan Brownie', 'Fudgy, dense, and completely plant-based sweet treat.', 'desserts', 3.20, 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=400&q=80');
 
 -- Testimonials
