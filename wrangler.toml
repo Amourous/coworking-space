@@ -1,0 +1,5 @@
+name = "coworking-space"
+compatibility_date = "2024-03-20"
+
+[ai]
+binding = "AI"
