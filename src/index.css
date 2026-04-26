@@ -3,8 +3,71 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --color-background: 11 15 25;
+    --color-surface: 21 28 44;
+    --color-surface-hover: 30 37 54;
+    --color-primary: 99 102 241;
+    --color-primary-hover: 79 70 229;
+    --color-text-main: 243 244 246;
+    --color-text-muted: 156 163 175;
+    --color-accent: 56 189 248;
+    --color-success: 16 185 129;
+    --color-warning: 245 158 11;
+    --color-danger: 239 68 68;
+    color-scheme: dark;
+  }
+
+  [data-theme="morning-brew"] {
+    --color-background: 249 243 236;
+    --color-surface: 255 255 255;
+    --color-surface-hover: 241 233 226;
+    --color-primary: 139 90 43;
+    --color-primary-hover: 111 70 30;
+    --color-text-main: 51 43 38;
+    --color-text-muted: 120 109 100;
+    --color-accent: 219 146 60;
+    color-scheme: light;
+  }
+
+  [data-theme="cyber-neon"] {
+    --color-background: 10 10 15;
+    --color-surface: 16 16 26;
+    --color-surface-hover: 26 26 42;
+    --color-primary: 255 0 128;
+    --color-primary-hover: 204 0 102;
+    --color-text-main: 230 230 250;
+    --color-text-muted: 136 136 170;
+    --color-accent: 0 255 255;
+    color-scheme: dark;
+  }
+
+  [data-theme="zen-space"] {
+    --color-background: 248 250 248;
+    --color-surface: 255 255 255;
+    --color-surface-hover: 235 242 235;
+    --color-primary: 96 153 102;
+    --color-primary-hover: 64 81 59;
+    --color-text-main: 44 51 45;
+    --color-text-muted: 121 133 123;
+    --color-accent: 157 192 139;
+    color-scheme: light;
+  }
+
+  [data-theme="executive"] {
+    --color-background: 13 20 36;
+    --color-surface: 23 35 63;
+    --color-surface-hover: 31 46 82;
+    --color-primary: 212 175 55;
+    --color-primary-hover: 170 138 36;
+    --color-text-main: 245 245 245;
+    --color-text-muted: 163 173 194;
+    --color-accent: 192 192 192;
+    color-scheme: dark;
+  }
+
   body {
-    @apply bg-background text-textMain antialiased min-h-screen selection:bg-primary/30 selection:text-white;
+    @apply bg-background text-textMain antialiased min-h-screen selection:bg-primary/30 selection:text-textMain;
   }
   
   html {
@@ -22,7 +85,7 @@
   }
   
   .btn-secondary {
-    @apply bg-white/10 hover:bg-white/20 text-white font-medium py-2 px-4 rounded-lg transition-colors border border-white/5;
+    @apply bg-textMain/10 hover:bg-textMain/20 text-textMain font-medium py-2 px-4 rounded-lg transition-colors border border-textMain/5;
   }
   
   .input-field {
@@ -33,18 +96,18 @@
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24;
   }
 
-  /* Custom Scrollbar for dark mode feeling */
+  /* Custom Scrollbar */
   ::-webkit-scrollbar {
     width: 8px;
   }
   ::-webkit-scrollbar-track {
-    background: #0B0F19; 
+    background: rgb(var(--color-background)); 
   }
   ::-webkit-scrollbar-thumb {
-    background: #1E2536; 
+    background: rgb(var(--color-surface-hover)); 
     border-radius: 4px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #38bdf8; 
+    background: rgb(var(--color-primary)); 
   }
 }

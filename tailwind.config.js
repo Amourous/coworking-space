@@ -7,17 +7,17 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: '#0B0F19',
-        surface: '#151C2C',
-        surfaceHover: '#1E2536',
-        primary: '#6366f1',
-        primaryHover: '#4f46e5',
-        textMain: '#F3F4F6',
-        textMuted: '#9CA3AF',
-        accent: '#38bdf8',
-        success: '#10b981',
-        warning: '#f59e0b',
-        danger: '#ef4444'
+        background: 'rgb(var(--color-background) / <alpha-value>)',
+        surface: 'rgb(var(--color-surface) / <alpha-value>)',
+        surfaceHover: 'rgb(var(--color-surface-hover) / <alpha-value>)',
+        primary: 'rgb(var(--color-primary) / <alpha-value>)',
+        primaryHover: 'rgb(var(--color-primary-hover) / <alpha-value>)',
+        textMain: 'rgb(var(--color-text-main) / <alpha-value>)',
+        textMuted: 'rgb(var(--color-text-muted) / <alpha-value>)',
+        accent: 'rgb(var(--color-accent) / <alpha-value>)',
+        success: 'rgb(var(--color-success) / <alpha-value>)',
+        warning: 'rgb(var(--color-warning) / <alpha-value>)',
+        danger: 'rgb(var(--color-danger) / <alpha-value>)'
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],

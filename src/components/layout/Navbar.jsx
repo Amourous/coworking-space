@@ -3,6 +3,7 @@ import { useAuth } from '../../context/AuthContext';
 import { Coffee, Menu, X, User, Globe } from 'lucide-react';
 import { useState } from 'react';
 import { useLang } from '../../context/LanguageContext';
+import ThemeSelector from './ThemeSelector';
 
 export default function Navbar() {
   const { user, profile, signOut } = useAuth();
@@ -38,10 +39,15 @@ export default function Navbar() {
             
             <div className="h-6 w-px bg-white/10" />
 
-            <button onClick={toggleLang} className="text-textMuted hover:text-white flex items-center gap-1.5 transition-colors text-sm font-medium">
-              <Globe className="w-4 h-4" />
-              {lang === 'en' ? 'عربي' : 'EN'}
-            </button>
+            <div className="h-6 w-px bg-white/10" />
+
+            <div className="flex items-center gap-2">
+              <button onClick={toggleLang} className="text-textMuted hover:text-white flex items-center gap-1.5 transition-colors text-sm font-medium p-2 rounded-lg hover:bg-surfaceHover">
+                <Globe className="w-4 h-4" />
+                {lang === 'en' ? 'عربي' : 'EN'}
+              </button>
+              <ThemeSelector />
+            </div>
 
             {user ? (
               <div className="flex items-center gap-4">
@@ -80,10 +86,15 @@ export default function Navbar() {
             
             <div className="border-t border-white/5 my-2 pt-2" />
             
-            <button onClick={() => { toggleLang(); setIsOpen(false); }} className="flex items-center gap-2 w-full px-3 py-2 text-base font-medium rounded-md hover:bg-white/5 text-textMuted text-left rtl:text-right">
-              <Globe className="w-5 h-5" />
-              {lang === 'en' ? 'عربي' : 'English'}
-            </button>
+            <div className="flex items-center justify-between">
+              <button onClick={() => { toggleLang(); setIsOpen(false); }} className="flex items-center gap-2 px-3 py-2 text-base font-medium rounded-md hover:bg-surfaceHover text-textMuted">
+                <Globe className="w-5 h-5" />
+                {lang === 'en' ? 'عربي' : 'English'}
+              </button>
+              <div className="px-3">
+                <ThemeSelector />
+              </div>
+            </div>
 
             <div className="border-t border-white/5 my-2 pt-2" />
             

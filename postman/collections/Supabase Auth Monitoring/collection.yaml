@@ -1,0 +1,18 @@
+name: 'Supabase Auth Monitoring'
+$kind: collection
+version: '3.0.0'
+variables:
+  - key: 'supabaseUrl'
+    value: 'https://aqakpuhtxlhtfgnogglz.supabase.co'
+  - key: 'supabaseAnonKey'
+    value: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFxYWtwdWh0eGxodGZnbm9nZ2x6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU3MTM0OTksImV4cCI6MjA5MTI4OTQ5OX0.JgZLvIaEZlObFzjzX_uA_tb4AkyY0ctZoj91AU-d9j4'
+  - key: 'loginEmail'
+    value: 'admin@worknest.com'
+  - key: 'loginPassword'
+    value: 'YourSecurePassword123!'
+  - key: 'invalidLoginEmail'
+    value: 'doesnotexist@worknest.invalid'
+  - key: 'invalidLoginPassword'
+    value: 'wrongpassword123'
+  - key: 'accessToken'
+    value: ''
